@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="weather.css">
+    <title>Weather Dashboard</title>
+
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-dark bg-dark">
+            <h1 class=" navbar navbar-brand">Weather Dashboard</h1>
+        </nav>
+    </header>
+
+
+    <form id="form1">
+        <label for="city"><strong>Desired City</strong></label><br>
+        <input type="text" class="city" placeholder="Type the city name"><br><br>
+        <input type="submit" class="btn btn-success" id="first">
+    </form>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="row">
+                    <h3>Recent Searches</h3>
+                    <p id="info"> Please click on the city name or type new search</p>
+                </div>
+                <div class="row history">
+                    <div id="historydata">
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <form id="form2">
+                            <label for="new"><strong>New City Search</strong></label><br>
+                            <input type="text" class="city" id="new" placeholder="Type the new search"><br><br>
+                            <input type="submit" class="btn btn-success" id="second">
+                        </form>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="row">
+                            <h2><span class="city-name"></span> </h2>
+                        </div>
+                        <div class="row">
+                            <div class="weather-container0">
+                                <h3 class="date"></h3>
+                                <p class="icon"><span id="cond"></span></p>
+                                    <p>Temp:&nbsp;<span class="temp"></span><span>&deg;F</span></p>
+                                    <p>Wind:&nbsp;<span class="wind"></span><span>mph</span></p>
+                                    <p>Humidity:&nbsp;<span class="humid"></span></p>
+                                <p class="index"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <h3> <u>Future Weather</u></h3>
+                    <div class="row" id="row5"></div>
+                </div>
+                <div class="row">   
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script type="text/javascript">
+        var store = [];
+
+        function renderButtons(buttonsArr) {
+            $("#historydata").empty();
+
+            $(buttonsArr).each((index, buttonStr) => {
+                var button = $("<button>" + buttonStr + "</button>");
+
+
+
+    
+
+
+
+
+                button.click(search);
+           
+           $("#historydata").prepend("<br><br>");
+           $("#historydata").prepend(button);
+          
+
+                
+
+
+
+              
+            });
+        }
+
+        $(document).ready(function() {
+            $(".container").hide();
+            $("#form2").hide();
+            
+            var storeStr = localStorage.getItem("cityName");
+
+            if (storeStr) {
+                store = JSON.parse(localStorage.getItem("cityName"));
+                renderButtons(store);
+            }
+
+            $("#first").on("click", search);
+            $("#second").on("click", search);
+        });
+
+    function search() {
+        event.preventDefault();
+        $(".container").show();
+        $("#form1").hide();
+        $("#form2").show();
+        $("#row5").empty();
+        
+
+        if ($(this).attr("type") === "submit") {
+            var city = $(this).parent().find("input.city").val().trim();
+        } else {
+            var city = $(this).text();
+        }
+
+        //Local storage and history
+        var Caps = city.toUpperCase();
+
+        if (store.indexOf(Caps) < 0) {
+            store.push(Caps);
+            renderButtons(store);
+        }
+
+        
+        var queryUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=11a5b7da9acdf60ccfba2ff6df117469";
+
+
+        $.ajax({
+            url: queryUrl,
+            method: "GET"
+        })
+
+            // We store all of the retrieved data inside of an object called "response"
+            .then(function (response) {
+
+                // Log the queryURL
+                var currentDay = moment().format("dddd, MMMM Do");
+                $(".date").text(currentDay);
+                $(".temp").text(response.main.temp);
+                $(".humid").text(response.main.humidity + "%");
+                $(".city-name").text(response.name);
+                $(".wind").text(response.wind.speed);
+
+
+
+
+                // Display weather icon
+
+                var iconcodeCurrent = response.weather[0].icon
+
+                var iconurlCurrent = "http://openweathermap.org/img/w/" + iconcodeCurrent + ".png";
+
+                $(".icon").html('<img src="' + iconurlCurrent + '" />');
+                $("#cond").text(response.weather[0].main)
+
+
+
+
+
+                var uvIndex = "https://api.openweathermap.org/data/2.5/uvi?appid=11a5b7da9acdf60ccfba2ff6df117469&lat=" + response.coord.lat + "&lon=" + response.coord.lon;
+
+
+                $.ajax({
+                    url: uvIndex,
+                    method: "GET"
+                })
+
+                    // response from uvIndex
+                    .then(function (uvResponse) {
+
+                        var index = uvResponse.value;
+                        var bgcolor;
+
+
+
+
+                        $(".index").text(index);
+
+                        if (index < 3) {
+                            $(".index").attr("style", "background-color:green")
+                        }
+                        else if (index >= 3 || index < 6) {
+                            $(".index").attr("style", "background-color:yellow")
+
+                        }
+                        else if (index >= 6 || index < 8) {
+                            $(".index").attr("style", "background-color:orange")
+
+                        }
+                        else {
+                            $(".index").attr("style", "background-color:red")
+
+                        }
+
+
+
+
+
+
+                    });
+
+
+
+
+
+
+
+
+            });
+
+        var fiveDay = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=11a5b7da9acdf60ccfba2ff6df117469";
+
+        $.ajax({
+            url: fiveDay,
+            method: "GET"
+        })
+
+            // We store all of the retrieved data inside of an object called "response"
+            .then(function (response) {
+
+                // Log the queryURL
+                for (i = 7; i < 40; i = i+8) {
+                
+                    var colm_2_div = $("<div class='col-md-2'>");
+                    let current_date = response.list[i].dt_txt.slice(0,10);
+                    $(colm_2_div).append("<p>" + current_date + "</p>");
+                    var weather_div = $("<div class='weather-container'>");
+                        var temp1 = response.list[i].main.temp;
+                        var wind1 = response.list[i].wind.speed;
+                        var humid1 = response.list[i].main.humidity;
+
+                        var iconCodeFuture = response.list[i].weather[0].icon
+                        var iconUrlFuture = "http://openweathermap.org/img/wn/" + iconCodeFuture + ".png";
+
+                        $(weather_div).append('<img src="' + iconUrlFuture + '" />');
+                        $(weather_div).append(" <p><span class='tata'> Temp:</span> " + temp1 + " &deg;F</p>");
+                        $(weather_div).append(" <p><span class='tata'> Wind:</span> " + wind1 + " mph</p>");
+                        $(weather_div).append(" <p><span class='tata'> Humidity:</span> " + humid1 + " %</p>");
+                        $(colm_2_div).append(weather_div);
+                        
+                        $("#row5").append(colm_2_div);
+                };
+            });
+    };
+    </script>
+</body>
+
+</html>

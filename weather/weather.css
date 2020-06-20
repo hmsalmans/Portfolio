@@ -1,0 +1,109 @@
+form {
+    margin-top: 150px;
+    text-align: center;
+    color:rgb(15, 228, 228);
+}
+body {
+    background-color:grey;
+    color: lightsalmon;
+}
+
+.history {
+    padding-left: 20px;
+    padding-top: 20px;
+    text-align: center;
+    border-radius: 20px;
+    border: solid;
+    border-color: rgb(30, 162, 223);
+    height: 500px;
+    width: 300px;
+}
+
+#info {
+    color: lightsalmon;
+}
+
+
+.weather-container {
+    background-color: rgb(119, 178, 255);
+    text-align: center;
+    border-radius: 20px;
+    margin: 20px;
+    padding-top: 20px;
+    border: solid;
+    border-color: rgb(53, 223, 30);
+    width: 125px;
+    height: 200px;
+    color: #9f7e69;
+}
+
+.col-md-4 {
+    margin-top: 20px;
+}
+span {
+    color:#9f7e69;
+}
+.city-name {
+    color: rgba(0, 238, 255, 0.932);
+    text-transform: uppercase;
+    text-overflow: ellipsis;
+    margin-right: 10px;
+    text-align: right;
+    font-family: 'Times New Roman', Times, serif;
+}
+.date {
+    margin-top: 10px;
+    color: #9f7e69;
+}
+.index {
+   margin-left: 170px;
+   margin-right: 170px;
+   border-radius: 50% ;
+}
+#form2 {
+    margin-top: 150px;
+    margin-left: -30px;
+    color: lightsalmon;
+}
+h1 {
+    font-family: fantasy;
+    text-align: center;
+    margin-top: 40px;
+    color:grey;
+}
+.weather-container0 {
+
+    background-color:#f7ffe0;
+    text-align: center;
+    border-radius: 10px;
+    border: solid;
+    border-color: rgb(30, 168, 223);
+    width: 420px;
+    height: 300px;
+
+}
+.col-md-3 {
+    margin-top: -80px;
+    margin-left: -20px;
+}
+#row5 {
+    color: aqua;
+
+}
+.tata {
+    color:rgb(30, 107, 223);
+    font-family: fantasy;
+}
+h3 {
+    margin-top: 20px;
+    font-family: fantasy;
+}
+
+#historydata{
+
+    color: rgb(223, 30, 104);
+}
+.col-md-4 {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color:darkolivegreen;
+}

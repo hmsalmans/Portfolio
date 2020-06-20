@@ -1,0 +1,42 @@
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+header nav a img {
+    width: 50px;
+
+
+}
+body {
+    background-image: url(image1.jpg);
+    background-size: cover;
+    font-family: 'Montserrat', sans-serif;
+    
+}
+p{
+    color: #fde2ff;
+}
+.red {
+    color: rgb(43, 174, 226);
+    
+}
+.null {
+    
+    
+}
+.red1 {
+    color: rgb(231, 10, 10);
+    
+}
+footer h3 {
+   width: 100;
+    position: fixed;
+    bottom: 0;
+    margin-left: 10px;
+    width: 100%;
+}
+h3 {
+    color: green;
+}
+h4 {
+    color: rosybrown;
+}
