@@ -71,7 +71,7 @@ body {
 }
 body img {
     
-        opacity: 0.8; /* linked css file has opacity attribute to make it translucent*/
+        opacity: 1.0; /* linked css file has opacity attribute to make it translucent*/
       }
       
       img:hover {
