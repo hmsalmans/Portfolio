@@ -1,4 +1,4 @@
-# updated-portfolio-3
+# Portfolio
 
 I tried to build a multi-pag portfolio. 
 ## Sections:
@@ -29,7 +29,7 @@ All these sections are inter-linked and can be navigated from one another. The n
 
 ## Link to Deployed Portfolio  
 
-*https://hmsalmans.github.io/updated-portfolio-3/
+*https://hmsalmans.github.io/Portfolio
     
      
     
