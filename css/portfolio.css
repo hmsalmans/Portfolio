@@ -64,19 +64,15 @@ footer{
     margin-top: -50px;
 }
 body {
-    background-image: url(background\ copy.jpg);
-    height: 100%;
-    width: 100%;
+    background-image: url(portfolio-back.jpeg);
+    background-repeat: no-repeat;
+    background-position: 50% 0;
+    -ms-background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
     background-size: cover;
 }
-body img {
-    
-        opacity: 1.0; /* linked css file has opacity attribute to make it translucent*/
-      }
-      
-      img:hover {
-        opacity: 1.0; /* opacity is nulled when mouse is hovered*/
-      }
 
       
 ul {
