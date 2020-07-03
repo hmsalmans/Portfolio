@@ -14,7 +14,7 @@ header h1{
     height: 50px;;
     font-weight: 900;
     font-family: monospace;
-    color: lightcoral;
+    color: powderblue;
 }
 main section article div h4 {
     color:gold;
@@ -89,4 +89,8 @@ h1 {
 
 #row2 {
     margin-top: 20px;
+}
+
+.colors {
+    color: rgb(224, 236, 45);
 }
