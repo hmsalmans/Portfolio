@@ -8,7 +8,7 @@ header nav a img {
 }
 body {
     background-image: url(portfolioimg.jpg);
-    background-size: cover;
+    background-size: 100%, cover;
     font-family: fantasy;
     font-weight: 300;
     font-size: large;
