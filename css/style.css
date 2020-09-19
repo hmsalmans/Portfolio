@@ -3,12 +3,21 @@
 
 header nav a img {
     width: 50px;
-
-
+}
+@media screen and (min-width:800px) {
+    .mine {
+      width:100%; /* The width is 100%, when the viewport is 800px or larger */
+    }
+  }
+.mine {
+    width: 30%; 
+     border-radius: 50%; 
+     margin-left: 100px;
+     margin-top: 60px;
 }
 body {
-    background-image: url(portfolioimg.jpg);
-    background-size: 100%, cover;
+    background-image: url(code-pic.jpg);
+    background-size: cover;
     font-family: fantasy;
     font-weight: 300;
     font-size: large;
@@ -22,7 +31,7 @@ body img {
   
   
 p{
-    color:rgb(202, 131, 24);
+    color: greenyellow;
     text-decoration: seagreen;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     margin-right: 50px;
@@ -50,7 +59,4 @@ h3 {
 }
 h4 {
     color: rosybrown;
-}
-.col-md-12 {
-    margin-top: 400px;
 }
