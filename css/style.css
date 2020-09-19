@@ -4,13 +4,10 @@
 header nav a img {
     width: 50px;
 }
-@media screen and (min-width:800px) {
-    .mine {
-      width:100%; /* The width is 100%, when the viewport is 800px or larger */
-    }
-  }
+
 .mine {
-    width: 30%; 
+    width: 100%; 
+    height: auto;
      border-radius: 50%; 
      margin-left: 100px;
      margin-top: 60px;
